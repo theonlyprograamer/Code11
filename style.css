@@ -17,6 +17,11 @@ body {
   color: #fff;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* Navbar */
 .navbar {
   display: flex;
@@ -126,67 +131,108 @@ body {
   color: #aaa;
 }
 
-.product-card form input,
-.product-card form button {
+.product-card button {
   display: block;
   width: 100%;
   margin-top: 0.5rem;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  border: 1px solid #ccc;
-}
-
-.dark-mode input,
-.dark-mode textarea {
-  background: #111;
-  color: white;
-  border: 1px solid #444;
-}
-
-.buy-button {
+  padding: 0.6rem;
   background: #000;
   color: white;
   font-weight: 600;
-  cursor: pointer;
+  border-radius: 0.5rem;
   border: none;
+  cursor: pointer;
 }
 
-/* About & Contact */
-.about, .contact {
-  padding: 4rem 2rem;
-  text-align: center;
-}
-
-.contact form {
+/* Forms and Checkout */
+form {
   max-width: 500px;
-  margin: 0 auto;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #f2f2f2;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.contact form input,
-.contact form textarea,
-.contact form button {
-  padding: 0.8rem;
-  font-size: 1rem;
-  border-radius: 0.5rem;
-  border: 1px solid #ccc;
+.dark-mode form {
+  background: #111;
 }
 
-.contact button {
+input, textarea {
+  padding: 0.8rem;
+  border: none;
+  border-radius: 6px;
+  background: #e8e8e8;
+  color: #000;
+}
+
+.dark-mode input, .dark-mode textarea {
+  background: #1c1c1e;
+  color: white;
+}
+
+button {
+  padding: 0.8rem;
   background: #0071e3;
   color: white;
   border: none;
+  border-radius: 6px;
   font-weight: bold;
   cursor: pointer;
 }
 
-/* Footer */
+button:hover {
+  background: #005bb5;
+}
+
+/* Cart Display */
+.cart-items {
+  background-color: #f8f8f8;
+  padding: 1rem;
+  margin: 1rem auto;
+  max-width: 600px;
+  border-radius: 8px;
+}
+
+.dark-mode .cart-items {
+  background-color: #111;
+}
+
+.cart-items p {
+  margin-bottom: 0.5rem;
+}
+
+/* Contact Footer */
 .footer {
   text-align: center;
-  padding: 1rem;
+  padding: 2rem;
   background: #000;
+  color: #888;
+}
+
+.small-contact-button {
+  background: #0071e3;
   color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
   font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.small-contact-button:hover {
+  background: #005bb5;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
 }
