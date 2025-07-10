@@ -3,213 +3,127 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Checkout - TechStore</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+  <title>TechStore - Premium Apple Products</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #000;
-      color: white;
-      padding: 2rem;
-      transition: background 0.3s, color 0.3s;
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    body { background-color: #000; color: #fff; }
+    nav {
+      display: flex; justify-content: space-between;
+      padding: 1rem 2rem; background-color: #111;
+      position: sticky; top: 0; z-index: 10;
     }
-    body.light-mode {
-      background-color: #fff;
-      color: #000;
+    nav a {
+      color: #fff; margin-left: 1rem;
+      text-decoration: none; font-weight: 500;
+      cursor: pointer;
     }
-    h1 {
-      text-align: center;
-      margin-bottom: 1.5rem;
+    .hero {
+      text-align: center; padding: 4rem 2rem;
+      background-image: url('https://www.apple.com/v/iphone-15-pro/c/images/overview/contrast/contrast_finish__gejz1b1ivgi6_large.jpg');
+      background-size: cover; background-position: center;
     }
-    .cart-items {
-      background-color: #111;
-      padding: 1rem;
-      border-radius: 8px;
-      margin-bottom: 2rem;
+    .hero h1 { font-size: 3rem; font-weight: 800; color: #fff; margin-bottom: 1rem; }
+    .hero p { font-size: 1.2rem; margin-bottom: 2rem; color: #ddd; }
+    .hero button {
+      background-color: #007aff; color: white;
+      border: none; padding: 0.8rem 1.5rem;
+      font-size: 1rem; border-radius: 12px;
+      cursor: pointer;
     }
-    .light-mode .cart-items {
-      background-color: #f0f0f0;
+    .products {
+      display: flex; flex-wrap: wrap;
+      justify-content: center; gap: 2rem;
+      padding: 3rem 2rem; background-color: #111;
     }
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .product {
+      background-color: #1c1c1e; border-radius: 16px;
+      padding: 1.5rem; width: 280px; text-align: center;
+      box-shadow: 0 0 20px rgba(255,255,255,0.05);
+      transition: transform 0.3s;
+    }
+    .product:hover { transform: translateY(-5px); }
+    .product img {
+      width: 100%; height: auto;
+      border-radius: 12px; margin-bottom: 1rem;
+    }
+    .product h2 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+    .product p {
+      color: #ccc; font-size: 0.95rem;
       margin-bottom: 1rem;
     }
-    .cart-item span {
-      flex: 1;
+    .product button {
+      width: 100%; padding: 0.6rem;
+      margin-top: 0.5rem; border-radius: 6px;
+      border: none; background-color: #007aff;
+      color: #fff; font-weight: bold; cursor: pointer;
     }
-    .cart-item .qty {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .cart-item button {
-      padding: 0.3rem 0.6rem;
-      border: none;
-      background: #007aff;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-    .light-mode .cart-item button {
-      background: #005bb5;
-    }
-    .totals {
-      margin-top: 1rem;
-      font-weight: bold;
-      text-align: right;
-    }
-
-    form {
-      max-width: 400px;
-      margin: 2rem auto 0;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      background-color: #111;
-      padding: 2rem;
-      border-radius: 8px;
-    }
-
-    .light-mode form {
-      background-color: #f9f9f9;
-    }
-
-    input, textarea, button[type="submit"] {
-      padding: 0.8rem;
-      border-radius: 6px;
-      border: none;
-      font-size: 1rem;
-    }
-
-    input, textarea {
-      background-color: #1c1c1e;
-      color: white;
-    }
-
-    .light-mode input,
-    .light-mode textarea {
-      background-color: #fff;
-      color: #000;
-      border: 1px solid #ccc;
-    }
-
-    button[type="submit"] {
-      background-color: #007aff;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button[type="submit"]:hover {
-      background-color: #005bb5;
-    }
-
-    #themeToggle {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      background: none;
-      border: 2px solid #ccc;
-      padding: 0.5rem;
-      cursor: pointer;
-      color: white;
-    }
-
-    .light-mode #themeToggle {
-      color: black;
-      border-color: black;
+    footer {
+      text-align: center; padding: 2rem;
+      background-color: #000; color: #888;
     }
   </style>
+  <script>
+    let cart = {};
+
+    function addToCart(product) {
+      if (cart[product]) {
+        cart[product]++;
+      } else {
+        cart[product] = 1;
+      }
+      // No alert here
+    }
+
+    function checkout() {
+      if (Object.keys(cart).length === 0) {
+        alert("Your cart is empty.");
+        return;
+      }
+      const cartData = encodeURIComponent(JSON.stringify(cart));
+      window.location.href = `checkout.html?cart=${cartData}`;
+    }
+  </script>
 </head>
 <body>
-  <button id="themeToggle">🌓</button>
-  <h1>Checkout</h1>
-  <div class="cart-items" id="cartDisplay"></div>
+  <nav>
+    <div><strong>TechStore</strong></div>
+    <div>
+      <a onclick="checkout()">🛒 Cart</a>
+    </div>
+  </nav>
 
-  <form id="checkoutForm" action="https://formsubmit.co/theinvestorcompany001@gmail.com" method="POST" onsubmit="showThanks()">
-    <input type="text" name="name" placeholder="Your Name" required />
-    <input type="email" name="email" placeholder="Your Email" required />
-    <input type="text" name="phone" placeholder="Phone Number" required />
-    <textarea name="address" placeholder="Delivery Address" required></textarea>
-    <input type="hidden" name="cart" id="cartInput" />
-    <input type="hidden" name="_captcha" value="false" />
-    <button type="submit">Submit Order</button>
-  </form>
+  <div class="hero">
+    <h1>iPhone 15 Pro</h1>
+    <p>Built with Titanium. Powered by A17 Pro.</p>
+    <button onclick="addToCart('iPhone 15 Pro')">Add to Cart</button>
+  </div>
 
-  <script>
-    const cartDisplay = document.getElementById("cartDisplay");
-    const cartInput = document.getElementById("cartInput");
-    const prices = {
-      "iPhone 15 Pro": 999,
-      "MacBook Pro": 1299,
-      "iPad Pro": 799
-    };
+  <div class="products">
+    <div class="product">
+      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-family-select-2023?wid=940&hei=1112&fmt=png-alpha&.v=1693084812606" alt="iPhone 15 Pro">
+      <h2>iPhone 15 Pro</h2>
+      <p>From $999</p>
+      <button onclick="addToCart('iPhone 15 Pro')">Add to Cart</button>
+    </div>
 
-    const params = new URLSearchParams(window.location.search);
-    let cart = JSON.parse(decodeURIComponent(params.get("cart") || "{}"));
+    <div class="product">
+      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp16-spacegray-select-202301_GEO_IN?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1671302570659" alt="MacBook Pro">
+      <h2>MacBook Pro</h2>
+      <p>From $1,299</p>
+      <button onclick="addToCart('MacBook Pro')">Add to Cart</button>
+    </div>
 
-    function renderCart() {
-      cartDisplay.innerHTML = "";
-      let total = 0;
-      let cartSummary = "";
+    <div class="product">
+      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-pro-11-select-202104_GEO_IN?wid=940&hei=1112&fmt=png-alpha&.v=1617067386000" alt="iPad Pro">
+      <h2>iPad Pro</h2>
+      <p>From $799</p>
+      <button onclick="addToCart('iPad Pro')">Add to Cart</button>
+    </div>
+  </div>
 
-      Object.keys(cart).forEach(item => {
-        const qty = cart[item];
-        const price = prices[item] || 0;
-        const subtotal = qty * price;
-        total += subtotal;
-        cartSummary += `${item} × ${qty} = $${subtotal}\n`;
-
-        const div = document.createElement("div");
-        div.className = "cart-item";
-        div.innerHTML = `
-          <span>${item}</span>
-          <div class="qty">
-            <button onclick="changeQty('${item}', -1)">−</button>
-            <span>${qty}</span>
-            <button onclick="changeQty('${item}', 1)">+</button>
-          </div>
-          <span>$${subtotal}</span>
-        `;
-        cartDisplay.appendChild(div);
-      });
-
-      const totalDiv = document.createElement("div");
-      totalDiv.className = "totals";
-      totalDiv.innerHTML = `Total: $${total}`;
-      cartDisplay.appendChild(totalDiv);
-      cartInput.value = cartSummary + `Total: $${total}`;
-    }
-
-    function changeQty(item, delta) {
-      if (!cart[item]) return;
-      cart[item] += delta;
-      if (cart[item] <= 0) delete cart[item];
-      renderCart();
-    }
-
-    function showThanks() {
-      setTimeout(() => {
-        alert("Thank you for shopping with us!");
-      }, 100);
-    }
-
-    function toggleTheme() {
-      document.body.classList.toggle("light-mode");
-      localStorage.setItem("theme", document.body.classList.contains("light-mode") ? "light" : "dark");
-    }
-
-    document.getElementById("themeToggle").addEventListener("click", toggleTheme);
-
-    // Load saved theme
-    if (localStorage.getItem("theme") === "light") {
-      document.body.classList.add("light-mode");
-    }
-
-    renderCart();
-  </script>
+  <footer>
+    &copy; 2025 TechStore. All rights reserved.
+  </footer>
 </body>
 </html>
