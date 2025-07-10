@@ -4,69 +4,128 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TechStore - Premium Apple Products</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
-    .theme-toggle {
-      background: none;
-      border: 1px solid #fff;
-      padding: 0.4rem 0.8rem;
-      border-radius: 0.4rem;
-      cursor: pointer;
-      color: white;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
     }
-    .dark-mode .theme-toggle {
-      border-color: #fff;
+
+    body {
+      background-color: #000;
+      color: #fff;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background-color: #111;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      color: #fff;
+      margin-left: 1rem;
+      text-decoration: none;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      background-image: url('https://www.apple.com/v/iphone-15-pro/c/images/overview/contrast/contrast_finish__gejz1b1ivgi6_large.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #ddd;
+    }
+
+    .hero button {
+      background-color: #007aff;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      padding: 3rem 2rem;
+      background-color: #111;
+    }
+
+    .product {
+      background-color: #1c1c1e;
+      border-radius: 16px;
+      padding: 1.5rem;
+      width: 280px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(255,255,255,0.05);
+      transition: transform 0.3s;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .product h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .product p {
+      color: #ccc;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .product button {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.5rem;
+      border-radius: 6px;
+      border: none;
+      background-color: #007aff;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: #000;
+      color: #888;
     }
   </style>
-</head>
-<body>
-  <div class="navbar">
-    <div class="logo">TechStore</div>
-    <nav>
-      <a onclick="checkout()">🛒 Cart</a>
-      <button class="theme-toggle" onclick="toggleTheme()">🌓 Theme</button>
-    </nav>
-  </div>
-
-  <section class="hero">
-    <h1>iPhone 15 Pro</h1>
-    <p>Built with Titanium. Powered by A17 Pro.</p>
-    <a class="cta-button" href="#products">Shop Now</a>
-  </section>
-
-  <section class="products" id="products">
-    <h2>Our Products</h2>
-    <div class="product-grid">
-
-      <div class="product-card">
-        <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-family-select-2023?wid=940&hei=1112&fmt=png-alpha&.v=1693084812606" alt="iPhone 15 Pro">
-        <h3>iPhone 15 Pro</h3>
-        <p>From $999</p>
-        <button class="buy-button" onclick="addToCart('iPhone 15 Pro')">Add to Cart</button>
-      </div>
-
-      <div class="product-card">
-        <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp16-spacegray-select-202301_GEO_IN?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1671302570659" alt="MacBook Pro">
-        <h3>MacBook Pro</h3>
-        <p>From $1,299</p>
-        <button class="buy-button" onclick="addToCart('MacBook Pro')">Add to Cart</button>
-      </div>
-
-      <div class="product-card">
-        <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-pro-11-select-202104_GEO_IN?wid=940&hei=1112&fmt=png-alpha&.v=1617067386000" alt="iPad Pro">
-        <h3>iPad Pro</h3>
-        <p>From $799</p>
-        <button class="buy-button" onclick="addToCart('iPad Pro')">Add to Cart</button>
-      </div>
-
-    </div>
-  </section>
-
-  <div class="footer">
-    &copy; 2025 TechStore. All rights reserved.
-  </div>
-
   <script>
     let cart = {};
 
@@ -76,7 +135,7 @@
       } else {
         cart[product] = 1;
       }
-      alert(product + " added to cart.");
+      // Removed alert
     }
 
     function checkout() {
@@ -87,10 +146,47 @@
       const cartData = encodeURIComponent(JSON.stringify(cart));
       window.location.href = `checkout.html?cart=${cartData}`;
     }
-
-    function toggleTheme() {
-      document.body.classList.toggle("dark-mode");
-    }
   </script>
+</head>
+<body>
+  <nav>
+    <div><strong>TechStore</strong></div>
+    <div>
+      <a onclick="checkout()">🛒 Cart</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <h1>iPhone 15 Pro</h1>
+    <p>Built with Titanium. Powered by A17 Pro.</p>
+    <button>Shop Now</button>
+  </div>
+
+  <div class="products">
+    <div class="product">
+      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-family-select-2023?wid=940&hei=1112&fmt=png-alpha&.v=1693084812606" alt="iPhone 15 Pro">
+      <h2>iPhone 15 Pro</h2>
+      <p>From $999</p>
+      <button onclick="addToCart('iPhone 15 Pro')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp16-spacegray-select-202301_GEO_IN?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1671302570659" alt="MacBook Pro">
+      <h2>MacBook Pro</h2>
+      <p>From $1,299</p>
+      <button onclick="addToCart('MacBook Pro')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-pro-11-select-202104_GEO_IN?wid=940&hei=1112&fmt=png-alpha&.v=1617067386000" alt="iPad Pro">
+      <h2>iPad Pro</h2>
+      <p>From $799</p>
+      <button onclick="addToCart('iPad Pro')">Add to Cart</button>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 TechStore. All rights reserved.
+  </footer>
 </body>
 </html>
