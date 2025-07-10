@@ -4,69 +4,74 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Checkout - TechStore</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <h1>Checkout</h1>
+<body class="dark-mode">
+  <h1 style="text-align:center">Checkout</h1>
+
   <div class="cart-items" id="cartDisplay"></div>
 
-  <form id="checkoutForm" action="https://formsubmit.co/theinvestorcompany001@gmail.com" method="POST" onsubmit="showThanks()">
+  <form action="https://formsubmit.co/investorcompany001@gmail.com" method="POST">
     <input type="text" name="name" placeholder="Your Name" required />
     <input type="email" name="email" placeholder="Your Email" required />
     <input type="text" name="phone" placeholder="Phone Number" required />
     <textarea name="address" placeholder="Delivery Address" required></textarea>
-    <input type="hidden" name="cart" id="cartInput" />
-    <input type="hidden" name="_captcha" value="false" />
-    <button type="submit">Submit Order</button>
+    <input type="hidden" name="order" id="orderData" />
+    <button type="submit" onclick="prepareForm()">Submit Order</button>
   </form>
 
   <script>
-    const cartDisplay = document.getElementById("cartDisplay");
-    const cartInput = document.getElementById("cartInput");
-    const params = new URLSearchParams(window.location.search);
-    const cartData = params.get("cart");
-    let cart = cartData ? JSON.parse(decodeURIComponent(cartData)) : {};
+    let cart = JSON.parse(localStorage.getItem("cart")) || {};
 
-    function updateCartUI() {
-      let displayText = "<strong>Items in your cart:</strong><br><br>";
-      let cartSummary = "";
+    function renderCart() {
+      const container = document.getElementById("cartDisplay");
+      container.innerHTML = "";
       let total = 0;
+      let summary = "";
 
       for (let item in cart) {
         const { quantity, price } = cart[item];
         total += quantity * price;
-        displayText += `
-          <p>
-            ${item} - $${price} × 
-            <button type="button" onclick="updateQuantity('${item}', -1)">−</button>
-            ${quantity}
-            <button type="button" onclick="updateQuantity('${item}', 1)">+</button>
-            = <strong>$${quantity * price}</strong>
-          </p>`;
-        cartSummary += `${item}: ${quantity} x $${price} = $${quantity * price}\n`;
+        summary += `${item} x${quantity} = $${quantity * price}\n`;
+
+        container.innerHTML += `
+          <div>
+            <p><strong>${item}</strong> - $${price} × 
+              <button onclick="updateQuantity('${item}', -1)">-</button>
+              ${quantity}
+              <button onclick="updateQuantity('${item}', 1)">+</button>
+            </p>
+          </div>
+        `;
       }
 
-      displayText += `<p><strong>Total: $${total}</strong></p>`;
-      cartDisplay.innerHTML = displayText;
-      cartInput.value = cartSummary + `\nTotal: $${total}`;
+      container.innerHTML += `<p><strong>Total: $${total}</strong></p>`;
     }
 
     function updateQuantity(item, change) {
       if (cart[item]) {
         cart[item].quantity += change;
         if (cart[item].quantity <= 0) delete cart[item];
-        updateCartUI();
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
       }
     }
 
-    function showThanks() {
-      setTimeout(() => {
-        alert("Thank you for shopping with us!");
-      }, 100);
+    function prepareForm() {
+      const orderData = document.getElementById("orderData");
+      const cart = JSON.parse(localStorage.getItem("cart")) || {};
+      let summary = "";
+
+      for (let item in cart) {
+        const { quantity, price } = cart[item];
+        summary += `${item}: ${quantity} × $${price} = $${quantity * price}\n`;
+      }
+
+      orderData.value = summary;
+      localStorage.removeItem("cart");
     }
 
-    updateCartUI();
+    renderCart();
   </script>
 </body>
 </html>
