@@ -4,71 +4,65 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Checkout - TechStore</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="dark-mode">
-  <h1 style="text-align:center">Checkout</h1>
+<body>
+  <nav class="navbar">
+    <div class="logo">TechStore</div>
+    <button class="dark-toggle" onclick="toggleTheme()">🌓</button>
+  </nav>
 
-  <div class="cart-items" id="cartDisplay"></div>
+  <section class="checkout">
+    <h2>Your Cart</h2>
+    <div id="cartItems"></div>
+    <h3 id="totalPrice"></h3>
 
-  <form action="https://formsubmit.co/investorcompany001@gmail.com" method="POST">
-    <input type="text" name="name" placeholder="Your Name" required />
-    <input type="email" name="email" placeholder="Your Email" required />
-    <input type="text" name="phone" placeholder="Phone Number" required />
-    <textarea name="address" placeholder="Delivery Address" required></textarea>
-    <input type="hidden" name="order" id="orderData" />
-    <button type="submit" onclick="prepareForm()">Submit Order</button>
-  </form>
+    <form action="https://formsubmit.co/investorcompany001@gmail.com" method="POST">
+      <input type="text" name="name" placeholder="Full Name" required />
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="text" name="address" placeholder="Shipping Address" required />
+      <input type="tel" name="phone" placeholder="Phone Number" required />
+      <button type="submit">Place Order</button>
+    </form>
+  </section>
 
   <script>
-    let cart = JSON.parse(localStorage.getItem("cart")) || {};
+    const cart = JSON.parse(decodeURIComponent(new URLSearchParams(window.location.search).get("cart")));
+    const cartContainer = document.getElementById("cartItems");
+    const totalDisplay = document.getElementById("totalPrice");
 
     function renderCart() {
-      const container = document.getElementById("cartDisplay");
-      container.innerHTML = "";
+      cartContainer.innerHTML = "";
       let total = 0;
-      let summary = "";
 
-      for (let item in cart) {
-        const { quantity, price } = cart[item];
-        total += quantity * price;
-        summary += `${item} x${quantity} = $${quantity * price}\n`;
+      for (const item in cart) {
+        const { price, quantity } = cart[item];
+        total += price * quantity;
 
-        container.innerHTML += `
+        cartContainer.innerHTML += `
           <div>
-            <p><strong>${item}</strong> - $${price} × 
-              <button onclick="updateQuantity('${item}', -1)">-</button>
-              ${quantity}
-              <button onclick="updateQuantity('${item}', 1)">+</button>
-            </p>
+            <strong>${item}</strong>: $${price} x 
+            <button onclick="updateQty('${item}', -1)">−</button>
+            ${quantity}
+            <button onclick="updateQty('${item}', 1)">+</button>
+            = $${price * quantity}
           </div>
         `;
       }
 
-      container.innerHTML += `<p><strong>Total: $${total}</strong></p>`;
+      totalDisplay.innerText = `Total: $${total}`;
     }
 
-    function updateQuantity(item, change) {
-      if (cart[item]) {
-        cart[item].quantity += change;
-        if (cart[item].quantity <= 0) delete cart[item];
-        localStorage.setItem("cart", JSON.stringify(cart));
-        renderCart();
+    function updateQty(product, delta) {
+      cart[product].quantity += delta;
+      if (cart[product].quantity <= 0) {
+        delete cart[product];
       }
+      renderCart();
     }
 
-    function prepareForm() {
-      const orderData = document.getElementById("orderData");
-      const cart = JSON.parse(localStorage.getItem("cart")) || {};
-      let summary = "";
-
-      for (let item in cart) {
-        const { quantity, price } = cart[item];
-        summary += `${item}: ${quantity} × $${price} = $${quantity * price}\n`;
-      }
-
-      orderData.value = summary;
-      localStorage.removeItem("cart");
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
     }
 
     renderCart();
