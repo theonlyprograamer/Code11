@@ -1,101 +1,110 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Checkout - TechStore</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #000;
-      color: white;
+    .checkout-container {
+      max-width: 600px;
+      margin: 4rem auto;
       padding: 2rem;
-    }h1 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
+      border-radius: 1rem;
+      background: #f4f4f4;
+    }
 
-.cart-items {
-  background-color: #111;
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 2rem;
-}
+    .dark-mode .checkout-container {
+      background: #1c1c1c;
+    }
 
-.cart-items p {
-  margin: 0.5rem 0;
-  color: #ccc;
-}
+    .checkout-container h2 {
+      margin-bottom: 1rem;
+      text-align: center;
+    }
 
-form {
-  max-width: 400px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  background-color: #111;
-  padding: 2rem;
-  border-radius: 8px;
-}
+    .checkout-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
 
-input, textarea, button {
-  padding: 0.8rem;
-  border-radius: 6px;
-  border: none;
-  font-size: 1rem;
-}
+    .checkout-form input,
+    .checkout-form textarea {
+      padding: 0.8rem;
+      font-size: 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid #ccc;
+    }
 
-input, textarea {
-  background-color: #1c1c1e;
-  color: white;
-}
+    .dark-mode .checkout-form input,
+    .dark-mode .checkout-form textarea {
+      background: #111;
+      color: white;
+      border: 1px solid #444;
+    }
 
-button {
-  background-color: #007aff;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-}
+    .checkout-form button {
+      background: #0071e3;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      padding: 0.8rem;
+      border-radius: 0.5rem;
+      border: none;
+      cursor: pointer;
+    }
 
-button:hover {
-  background-color: #005bb5;
-}
-
+    .theme-toggle {
+      position: absolute;
+      right: 2rem;
+      top: 1rem;
+      background: none;
+      color: white;
+      border: 1px solid white;
+      padding: 0.3rem 0.7rem;
+      border-radius: 0.4rem;
+      cursor: pointer;
+    }
   </style>
 </head>
-<body>  <h1>Checkout</h1>  <div class="cart-items" id="cartDisplay"></div>  <form id="checkoutForm" action="https://formsubmit.co/theinvestorcompany001@gmail.com" method="POST" onsubmit="showThanks()">
-    <input type="text" name="name" placeholder="Your Name" required />
-    <input type="email" name="email" placeholder="Your Email" required />
-    <input type="text" name="phone" placeholder="Phone Number" required />
-    <textarea name="address" placeholder="Delivery Address" required></textarea>
-    <input type="hidden" name="cart" id="cartInput" />
-    <input type="hidden" name="_captcha" value="false" />
-    <button type="submit">Submit Order</button>
-  </form>  <script>
-    const cartDisplay = document.getElementById("cartDisplay");
-    const cartInput = document.getElementById("cartInput");
+<body>
+  <button class="theme-toggle" onclick="toggleTheme()">🌓 Theme</button>
 
+  <div class="checkout-container">
+    <h2>Checkout</h2>
+
+    <form class="checkout-form" onsubmit="submitForm(event)">
+      <input type="text" name="name" placeholder="Your Full Name" required />
+      <input type="email" name="email" placeholder="Email Address" required />
+      <textarea name="address" placeholder="Shipping Address" rows="4" required></textarea>
+      <input type="tel" name="phone" placeholder="Phone Number" required />
+      <button type="submit">Place Order</button>
+    </form>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle("dark-mode");
+    }
+
+    function submitForm(event) {
+      event.preventDefault();
+      alert("Order placed successfully!");
+      window.location.href = "index.html";
+    }
+
+    // Optional: load cart from URL and show in console
     const params = new URLSearchParams(window.location.search);
-    const cartData = params.get("cart");
-
-    if (cartData) {
-      const cart = JSON.parse(decodeURIComponent(cartData));
-      let displayText = "<strong>Items in your cart:</strong><br>";
-      let cartSummary = "";
-
-      for (let item in cart) {
-        displayText += `<p>${item} × ${cart[item]}</p>`;
-        cartSummary += `${item}: ${cart[item]}\n`;
+    if (params.has("cart")) {
+      try {
+        const cart = JSON.parse(decodeURIComponent(params.get("cart")));
+        console.log("Cart contents:", cart);
+      } catch (err) {
+        console.error("Invalid cart data");
       }
-
-      cartDisplay.innerHTML = displayText;
-      cartInput.value = cartSummary;
     }
-
-    function showThanks() {
-      setTimeout(() => {
-        alert("Thank you for shopping with us!");
-      }, 100);
-    }
-  </script></body>
+  </script>
+</body>
 </html>
