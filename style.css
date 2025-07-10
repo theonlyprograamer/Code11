@@ -235,4 +235,80 @@ button:hover {
   .hero p {
     font-size: 1rem;
   }
+.checkout {
+  padding: 3rem 2rem;
+  max-width: 800px;
+  margin: auto;
+  text-align: left;
+}
+
+.checkout h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.checkout-cart .cart-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0.8rem 1rem;
+  background: #f2f2f2;
+  border-radius: 0.5rem;
+}
+
+.dark-mode .checkout-cart .cart-row {
+  background: #222;
+}
+
+.cart-row .item-controls button {
+  margin: 0 0.5rem;
+  padding: 0.2rem 0.6rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.checkout-form {
+  padding: 2rem;
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+.checkout-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.checkout-form input {
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.checkout-form button {
+  background: #0071e3;
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.total-price {
+  text-align: right;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+.dark-mode .checkout-form input,
+.dark-mode .checkout-form button {
+  background: #111;
+  color: #fff;
+  border: 1px solid #444;
+}
 }
