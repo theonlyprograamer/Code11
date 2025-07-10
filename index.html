@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TechStore</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechStore - Premium Apple Products</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
     * {
       margin: 0;
@@ -12,29 +11,19 @@
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
     }
-
     body {
       background-color: #000;
       color: #fff;
-      transition: background 0.3s, color 0.3s;
     }
-
-    .light-mode {
-      background-color: #fff;
-      color: #000;
-    }
-
     nav {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       padding: 1rem 2rem;
       background-color: #111;
       position: sticky;
       top: 0;
       z-index: 10;
     }
-
     nav a {
       color: #fff;
       margin-left: 1rem;
@@ -42,27 +31,6 @@
       font-weight: 500;
       cursor: pointer;
     }
-
-    .light-mode nav {
-      background-color: #eee;
-    }
-
-    .light-mode nav a {
-      color: #000;
-    }
-
-    .dark-toggle {
-      background: transparent;
-      border: none;
-      font-size: 1.2rem;
-      color: white;
-      cursor: pointer;
-    }
-
-    .light-mode .dark-toggle {
-      color: black;
-    }
-
     .hero {
       text-align: center;
       padding: 4rem 2rem;
@@ -70,20 +38,17 @@
       background-size: cover;
       background-position: center;
     }
-
     .hero h1 {
       font-size: 3rem;
       font-weight: 800;
       color: #fff;
       margin-bottom: 1rem;
     }
-
     .hero p {
       font-size: 1.2rem;
       margin-bottom: 2rem;
       color: #ddd;
     }
-
     .hero button {
       background-color: #007aff;
       color: white;
@@ -93,7 +58,6 @@
       border-radius: 12px;
       cursor: pointer;
     }
-
     .products {
       display: flex;
       flex-wrap: wrap;
@@ -102,11 +66,6 @@
       padding: 3rem 2rem;
       background-color: #111;
     }
-
-    .light-mode .products {
-      background-color: #f9f9f9;
-    }
-
     .product {
       background-color: #1c1c1e;
       border-radius: 16px;
@@ -116,37 +75,23 @@
       box-shadow: 0 0 20px rgba(255,255,255,0.05);
       transition: transform 0.3s;
     }
-
-    .light-mode .product {
-      background-color: #f1f1f1;
-      color: #000;
-    }
-
     .product:hover {
       transform: translateY(-5px);
     }
-
     .product img {
       width: 100%;
       border-radius: 12px;
       margin-bottom: 1rem;
     }
-
     .product h2 {
       font-size: 1.3rem;
       margin-bottom: 0.5rem;
     }
-
     .product p {
       color: #ccc;
       font-size: 0.95rem;
       margin-bottom: 1rem;
     }
-
-    .light-mode .product p {
-      color: #444;
-    }
-
     .product button {
       width: 100%;
       padding: 0.6rem;
@@ -158,72 +103,36 @@
       font-weight: bold;
       cursor: pointer;
     }
-
-    .contact {
-      padding: 3rem 2rem;
-      text-align: center;
-      background-color: #111;
-    }
-
-    .light-mode .contact {
-      background-color: #f5f5f5;
-    }
-
-    .contact form {
-      max-width: 500px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .contact input, .contact textarea, .contact button {
-      padding: 0.8rem;
-      font-size: 1rem;
-      border-radius: 0.5rem;
-      border: 1px solid #ccc;
-    }
-
-    .contact button {
-      background: #007aff;
-      color: white;
-      border: none;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
     footer {
       text-align: center;
       padding: 2rem;
       background-color: #000;
       color: #888;
     }
-
-    .light-mode footer {
-      background-color: #ddd;
-      color: #444;
-    }
   </style>
-
   <script>
     let cart = {};
+    const prices = {
+      'iPhone 15 Pro': 999,
+      'MacBook Pro': 1299,
+      'iPad Pro': 799
+    };function addToCart(product) {
+  if (cart[product]) {
+    cart[product]++;
+  } else {
+    cart[product] = 1;
+  }
+}
 
-    function addToCart(product) {
-      cart[product] = (cart[product] || 0) + 1;
-    }
+function checkout() {
+  if (Object.keys(cart).length === 0) {
+    alert("Your cart is empty.");
+    return;
+  }
+  const cartData = encodeURIComponent(JSON.stringify(cart));
+  window.location.href = `checkout.html?cart=${cartData}`;
+}
 
-    function checkout() {
-      if (Object.keys(cart).length === 0) {
-        alert("Your cart is empty.");
-        return;
-      }
-      const cartData = encodeURIComponent(JSON.stringify(cart));
-      window.location.href = `checkout.html?cart=${cartData}`;
-    }
-
-    function toggleDarkMode() {
-      document.body.classList.toggle('light-mode');
-    }
   </script>
 </head>
 <body>
@@ -231,50 +140,43 @@
     <div><strong>TechStore</strong></div>
     <div>
       <a onclick="checkout()">🛒 Cart</a>
-      <button class="dark-toggle" onclick="toggleDarkMode()">🌓</button>
     </div>
-  </nav>
-
-  <div class="hero">
+  </nav>  <div class="hero">
     <h1>iPhone 15 Pro</h1>
     <p>Built with Titanium. Powered by A17 Pro.</p>
-    <button onclick="document.querySelector('.products').scrollIntoView({behavior: 'smooth'})">Shop Now</button>
-  </div>
-
-  <div class="products">
+    <button>Shop Now</button>
+  </div>  <div class="products">
     <div class="product">
-      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-model-unselect-gallery-1-202309?wid=5120&hei=2880&fmt=jpeg&qlt=80&.v=1692912411390" alt="iPhone 15 Pro" />
+      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-family-select-2023?wid=940&hei=1112&fmt=png-alpha&.v=1693084812606" alt="iPhone 15 Pro">
       <h2>iPhone 15 Pro</h2>
       <p>From $999</p>
       <button onclick="addToCart('iPhone 15 Pro')">Add to Cart</button>
     </div>
-
     <div class="product">
-      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-pro-model-unselect-gallery-1-202405?wid=5120&hei=2880&fmt=jpeg&qlt=80&.v=1714342701956" alt="iPad Pro" />
-      <h2>iPad Pro</h2>
-      <p>From $1099</p>
-      <button onclick="addToCart('iPad Pro')">Add to Cart</button>
-    </div>
-
-    <div class="product">
-      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp16-spaceblack-gallery1-202310?wid=5120&hei=2880&fmt=jpeg&qlt=80&.v=1697311105481" alt="MacBook Pro" />
+      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp16-spacegray-select-202301_GEO_IN?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1671302570659" alt="MacBook Pro">
       <h2>MacBook Pro</h2>
-      <p>From $1999</p>
+      <p>From $1,299</p>
       <button onclick="addToCart('MacBook Pro')">Add to Cart</button>
     </div>
-  </div>
+    <div class="product">
+      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-pro-11-select-202104_GEO_IN?wid=940&hei=1112&fmt=png-alpha&.v=1617067386000" alt="iPad Pro">
+      <h2>iPad Pro</h2>
+      <p>From $799</p>
+      <button onclick="addToCart('iPad Pro')">Add to Cart</button>
+    </div>
+  </div>  <!-- Contact Button & Form -->  <div style="text-align: center; padding: 2rem;">
+    <button onclick="document.getElementById('contactForm').style.display='block'"
+      style="padding: 0.5rem 1rem; border-radius: 8px; background: #007aff; color: white; border: none; cursor: pointer;">
+      Contact Us
+    </button><form id="contactForm" action="https://formsubmit.co/investorcompany001@gmail.com" method="POST" style="display:none; margin-top: 1rem; max-width: 400px; margin-inline: auto;">
+  <input type="text" name="name" placeholder="Your Name" required style="width: 100%; padding: 0.5rem; margin-bottom: 0.5rem;" />
+  <input type="email" name="email" placeholder="Your Email" required style="width: 100%; padding: 0.5rem; margin-bottom: 0.5rem;" />
+  <textarea name="message" placeholder="Your Message" rows="4" required style="width: 100%; padding: 0.5rem;"></textarea>
+  <input type="hidden" name="_captcha" value="false">
+  <button type="submit" style="margin-top: 0.5rem; padding: 0.5rem 1rem; border-radius: 6px; background: #28a745; color: white; border: none;">Send</button>
+</form>
 
-  <div class="contact" id="contact">
-    <h2>Contact Us</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Your Email" required />
-      <textarea placeholder="Your Message" rows="4" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </div>
-
-  <footer>
+  </div>  <footer>
     &copy; 2025 TechStore. All rights reserved.
   </footer>
 </body>
