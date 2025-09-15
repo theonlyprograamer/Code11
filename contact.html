@@ -5,60 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact Us - Code 11</title>
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Favicon -->
-  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
 
   <!-- Navbar -->
   <header>
     <nav class="navbar">
-      <div class="logo">
-        <img src="assets/logo.png" alt="Code 11 Logo">
-        Code 11
-      </div>
+      <div class="logo-text">Code 11</div>
       <ul class="nav-links">
         <li><a href="index.html#about">About Us</a></li>
         <li><a href="index.html#services">Services</a></li>
         <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="login.html">Login</a></li>
       </ul>
     </nav>
   </header>
 
   <!-- Hero Section -->
   <section class="hero">
-    <h1 class="typewriter-text">Contact Us</h1>
+    <h1 class="gradient-text">Contact Us</h1>
   </section>
 
   <!-- Contact Info -->
   <section id="contact" style="text-align: center;">
-    <h2>We'd Love to Hear from You!</h2>
+    <h2 class="gradient-text">We'd Love to Hear from You!</h2>
 
-    <p>📧 Email: <a href="mailto:code11official01@gmail.com" style="color: #00aced;">code11official01@gmail.com</a></p>
-    <p>📞 Phone: <a href="tel:+919061001602" style="color: #00aced;">+91 9061001602</a></p>
+    <p>📧 Email: <a href="mailto:code11official01@gmail.com" class="link">code11official01@gmail.com</a></p>
+    <p>📞 Phone: <a href="tel:+919061001602" class="link">+91 9061001602</a></p>
     <p>📍 Address:
       <a href="https://www.google.com/maps/search/?api=1&query=11+Code+Street,+Bengaluru,+India"
-         target="_blank" style="color: #00aced;">11 Code Street, Bengaluru, India</a></p>
+         target="_blank" class="link">11 Code Street, Bengaluru, India</a></p>
     <p>💬 WhatsApp:
       <a href="https://wa.me/919061001602?text=Hi%2C%20I'm%20interested%20in%20your%20services%21"
-         target="_blank" style="color: #25D366;">Contact us through WhatsApp</a></p>
+         target="_blank" class="link">Contact us through WhatsApp</a></p>
 
     <!-- Contact Form -->
-    <h3>Or send us a message:</h3>
-    <form action="https://formsubmit.co/code11official01@gmail.com" method="POST">
+    <h3 class="gradient-text">Or send us a message:</h3>
+    <form action="https://formsubmit.co/code11official01@gmail.com" method="POST" class="form-box">
       <input type="text" name="name" placeholder="Your Name" required />
       <input type="email" name="email" placeholder="Your Email" required />
       <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-      <button type="submit" class="btn">Send Message</button>
+      <button type="submit" class="cta-btn">Send Message</button>
 
-      <!-- Optional settings -->
-      <input type="hidden" name="_subject" value="New message from Code 11 website!">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="box">
-    </form>
-  </section>
-
-</body>
-</html>
+      <!-- Hidden settings -->
+      <input type
