@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services | Code 11</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    /* Company Cards */
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      margin: 40px 0;
+    }
+    .company-card {
+      background: #1b1f2a;
+      border-radius: 12px;
+      padding: 20px;
+      width: 220px;
+      text-align: center;
+      color: white;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+    .company-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(255,0,128,0.6),
+                  0 10px 25px rgba(0,102,255,0.6);
+      border: 2px solid #ff0080;
+    }
+    .company-card img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-bottom: 15px;
+    }
+    .company-card h4 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #ff5733, #ff0080, #0066ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .company-card p {
+      font-size: 14px;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header data-aos="fade-down">
+    <nav class="navbar">
+      <div class="logo-text">Code 11</div>
+      <ul class="nav-links">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="join.html">Join Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" data-aos="zoom-in">
+    <h1 class="gradient-text">Our Services & Global Impact</h1>
+    <p data-aos="fade-up">Delivering world-class coding solutions to top tech and multibillion-dollar companies.</p>
+  </section>
+
+  <!-- Essay Section -->
+  <section class="section" data-aos="fade-up">
+    <h2 class="gradient-text">Coding for Leading Companies</h2>
+    <p data-aos="fade-right">
+      At Code11, we provide cutting-edge software development and technological solutions to a range of clients — from innovative startups to global multibillion-dollar corporations. Our team ensures that every project meets the highest standards of efficiency, security, and scalability.
+    </p>
+    <p data-aos="fade-left">
+      Our portfolio includes collaborations with <strong>Litmus, IBS, Google, Microsoft, Amazon, Apple, Tesla</strong> and more. We work on frontend & backend development, AI/ML integrations, cloud solutions, and custom enterprise applications.
+    </p>
+    <p data-aos="fade-right">
+      These partnerships allow us to contribute to large-scale, innovative projects while adhering to strict global standards. Every line of code we write is aimed at empowering our clients to innovate, scale, and succeed on a global stage.
+    </p>
+  </section>
+
+  <!-- Company Cards -->
+  <section class="section">
+    <div class="cards-container">
+      <div class="company-card" data-aos="flip-left">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/76/Litmus_logo.svg" alt="Litmus Logo">
+        <h4>Litmus</h4>
+        <p>Email analytics optimization and performance enhancement solutions.</p>
+      </div>
+      <div class="company-card" data-aos="flip-right">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/IBS_Logo.svg" alt="IBS Logo">
+        <h4>IBS</h4>
+        <p>Enterprise solutions to streamline complex business operations.</p>
+      </div>
+      <div class="company-card" data-aos="flip-left">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google Logo">
+        <h4>Google</h4>
+        <p>Large-scale project contributions with cutting-edge technologies.</p>
+      </div>
+      <div class="company-card" data-aos="flip-right">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft Logo">
+        <h4>Microsoft</h4>
+        <p>Enterprise apps, cloud solutions, and robust backend systems.</p>
+      </div>
+      <div class="company-card" data-aos="flip-left">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon Logo">
+        <h4>Amazon</h4>
+        <p>Optimizing backend systems and scaling complex web services.</p>
+      </div>
+      <div class="company-card" data-aos="flip-right">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple Logo">
+        <h4>Apple</h4>
+        <p>Enhancing UI/UX in proprietary apps with modern designs.</p>
+      </div>
+      <div class="company-card" data-aos="flip-left">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg" alt="Tesla Logo">
+        <h4>Tesla</h4>
+        <p>Supporting advanced data-driven solutions for EV technology.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer data-aos="fade-up">
+    <p>&copy; 2025 Code 11. All rights reserved.</p>
+  </footer>
+
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+
+</body>
+</html>
