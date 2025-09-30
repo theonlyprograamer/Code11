@@ -5,17 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Join Us | Code 11</title>
   <link rel="stylesheet" href="style.css" />
+
+  <!-- AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
 
   <!-- Navbar -->
-  <header>
+  <header data-aos="fade-down">
     <nav class="navbar">
       <div class="logo-text">Code 11</div>
       <ul class="nav-links">
         <li><a href="index.html#home">Home</a></li>
         <li><a href="index.html#about">About Us</a></li>
-        <li><a href="index.html#services">Services</a></li>
+        <li><a href="services.html">Services</a></li>
         <li><a href="contact.html">Contact Us</a></li>
         <li><a href="login.html">Login</a></li>
         <li><a href="join.html">Join Us</a></li>
@@ -24,35 +27,35 @@
   </header>
 
   <!-- Hero -->
-  <section class="hero">
+  <section class="hero" data-aos="zoom-in">
     <h1 class="gradient-text">Join the Code11 Family</h1>
   </section>
 
   <!-- Careers Section -->
-  <section class="section">
+  <section class="section" data-aos="fade-up">
     <h2 class="gradient-text">Why Join Code11?</h2>
-    <p>
+    <p data-aos="fade-right">
       Since our founding in 2000, Code11 has grown into one of the world’s most
       successful tech companies, generating $200–300 billion annually.  
       We’re always looking for passionate, innovative minds to join us in
       building the future.
     </p>
 
-    <h3 class="gradient-text">Current Openings</h3>
-    <ul style="text-align:left;">
+    <h3 class="gradient-text" data-aos="fade-left">Current Openings</h3>
+    <ul style="text-align:left;" data-aos="fade-up">
       <li>🌐 Frontend Developer (React, Tailwind)</li>
       <li>⚙️ Backend Engineer (Node.js, Python, APIs)</li>
       <li>🎨 UI/UX Designer</li>
       <li>📊 Data Scientist (AI/ML)</li>
     </ul>
 
-    <h3 class="gradient-text">Apply Now</h3>
-    <form action="https://formsubmit.co/code11official01@gmail.com" method="POST" style="max-width:500px; margin:auto;">
+    <h3 class="gradient-text" data-aos="flip-up">Apply Now</h3>
+    <form action="https://formsubmit.co/code11official01@gmail.com" method="POST" style="max-width:500px; margin:auto;" data-aos="fade-up">
       <input type="text" name="name" placeholder="Your Full Name" required>
       <input type="email" name="email" placeholder="Your Email" required>
       <input type="text" name="role" placeholder="Role You’re Applying For" required>
       <textarea name="message" rows="5" placeholder="Why do you want to join Code11?" required></textarea>
-      <button type="submit">Submit Application</button>
+      <button type="submit" class="cta-btn">Submit Application</button>
 
       <!-- Hidden fields -->
       <input type="hidden" name="_subject" value="New Job Application - Code11 Website">
@@ -60,9 +63,17 @@
     </form>
   </section>
 
-  <footer>
+  <footer data-aos="fade-up">
     <p>&copy; 2025 Code 11. All rights reserved.</p>
   </footer>
 
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
 </body>
 </html>
