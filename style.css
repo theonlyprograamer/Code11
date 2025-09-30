@@ -1,4 +1,4 @@
-/* General Reset */
+/* ================= General Reset ================= */
 * {
   margin: 0;
   padding: 0;
@@ -15,7 +15,7 @@ body {
   flex-direction: column;
 }
 
-/* Navbar */
+/* ================= Navbar ================= */
 .navbar {
   background: #001f3f;
   padding: 15px 50px;
@@ -49,7 +49,7 @@ body {
   color: #ff0080;
 }
 
-/* Hero Section */
+/* ================= Hero Section ================= */
 .hero {
   text-align: center;
   padding: 80px 20px;
@@ -63,7 +63,7 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-/* Buttons */
+/* ================= Buttons ================= */
 .cta-btn {
   background: linear-gradient(90deg, #ff5733, #ff0080, #0066ff);
   border: none;
@@ -75,6 +75,7 @@ body {
   font-weight: bold;
   color: white;
   transition: 0.3s;
+  box-shadow: 0 4px 12px rgba(255,0,128,0.3), 0 4px 12px rgba(0,102,255,0.3);
 }
 
 .cta-btn:hover {
@@ -82,7 +83,7 @@ body {
   opacity: 0.9;
 }
 
-/* Forms */
+/* ================= Forms ================= */
 .form-box {
   max-width: 400px;
   margin: 50px auto;
@@ -113,7 +114,7 @@ body {
   border: 2px solid #ff0080;
 }
 
-/* Links */
+/* ================= Links ================= */
 .link {
   color: #ff0080;
   text-decoration: none;
@@ -123,7 +124,7 @@ body {
   text-decoration: underline;
 }
 
-/* Footer */
+/* ================= Footer ================= */
 footer {
   text-align: center;
   padding: 20px;
@@ -131,4 +132,148 @@ footer {
   margin-top: auto;
   font-size: 14px;
   color: #bbb;
+}
+
+/* ================= Company Cards ================= */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  margin: 40px 0;
+}
+
+.company-card {
+  background: #1b1f2a;
+  border-radius: 12px;
+  padding: 20px;
+  width: 220px;
+  text-align: center;
+  color: white;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.company-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(255,0,128,0.6),
+              0 10px 25px rgba(0,102,255,0.6);
+  border: 2px solid #ff0080;
+}
+
+.company-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.company-card h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, #ff5733, #ff0080, #0066ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.company-card p {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* ================= Responsive Styles ================= */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 15px 20px;
+  }
+  .nav-links {
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .section h2.gradient-text,
+  .section h3.gradient-text {
+    font-size: 24px;
+  }
+
+  .section p, .section ul li {
+    font-size: 14px;
+  }
+
+  .form-box {
+    padding: 20px;
+    width: 90%;
+  }
+
+  .form-box input,
+  .form-box textarea {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .cta-btn {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  .cards-container {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .company-card {
+    width: 90%;
+  }
+
+  .company-card img {
+    width: 60px;
+    height: 60px;
+  }
+
+  footer {
+    font-size: 12px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 22px;
+  }
+
+  .section h2.gradient-text,
+  .section h3.gradient-text {
+    font-size: 20px;
+  }
+
+  .form-box input,
+  .form-box textarea {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .cta-btn {
+    font-size: 13px;
+    padding: 8px 16px;
+  }
+
+  .company-card h4 {
+    font-size: 16px;
+  }
+
+  .company-card p {
+    font-size: 12px;
+  }
 }
